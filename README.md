@@ -7,13 +7,13 @@
 
 ## Set up instructions
 - Fork this repository and clone the forked version to your machine
-- Open the root directory of the project in IntelliJ
+- Open the project in Visual Studio
 
 ## Introduction
 
 We can think of inheritance as one class literally inheriting behaviour from another class, just as a human child might inherit certain behaviour from their parent. We call the parent a *superclass* and the child a *subclass*. It can be useful when we want multiple classes to do a particular thing. Consider the example below:
 
-```java
+```C#
 class Car {
     int topSpeed;
     
@@ -21,7 +21,7 @@ class Car {
         this.topSpeed = topSpeed;
     }
     
-    public String move() {
+    public string move() {
         return "Moving at " + this.topSpeed;
     }
 }
@@ -33,7 +33,7 @@ class Bike {
         this.topSpeed = topSpeed;
     }
 
-    public String move() {
+    public string move() {
         return "Moving at " + this.topSpeed;
     }
 }
@@ -45,7 +45,7 @@ class Plane {
         this.topSpeed = topSpeed;
     }
 
-    public String move() {
+    public string move() {
         return "Moving at " + this.topSpeed;
     }
 }
@@ -53,7 +53,7 @@ class Plane {
 
 There is a lot of repetition here. In previous exercises we used dependency injection to solve a similar problem, which is usually the better technique and is referred to as *composition*, but we can also solve the problem using inheritance:
 
-```java
+```C#
 class Vehicle {
     int topSpeed;
     
@@ -61,40 +61,39 @@ class Vehicle {
         this.topSpeed = topSpeed;
     }
     
-    public String move() {
+    public string move() {
         return "Moving at " + this.topSpeed;
     }
 }
 
-class Car extends Vehicle {
+class Car : Vehicle {
     
 }
 
-class Bike extends Vehicle {
+class Bike : Vehicle {
     
 }
 ```
 
 In the above example, we created a superclass named `Vehicle` and two subclasses that inherit the `topSpeed` state and the `move()` method. We would be able to use them as normal; `car.move()`, `bike.move()`.
 
-Important to note is that we can still access the methods of the superclass from within the child class using the word `super`, for example if we need to supply additional information to a child constructor:
+Important to note is that we can still access the methods of the superclass from within the child class using the word `base`, for example if we need to supply additional information to a child constructor:
 
-```java
-class Car extends Vehicle {
-    String transmissionType;
+```C#
+class Car : Vehicle {
+    string transmissionType;
     
-    public Car(String transmissionType, int topSpeed) {
-        super(topSpeed);
+    public Car(string transmissionType, int topSpeed) : base(topSpeed) {
         this.transmissionType = transmissionType;
     }
 }
 ```
 
-When you provide a different constructor in your child, you'll have to call `super(...params)` to run the constructor of the superclass, passing in the appropriate values. This just allows you to add more parameters to the child, should you need them.
+When your parent class has a constructor that accepts values, you'll have to call `base(...params)` to run the constructor of the superclass.
 
-We can also replace methods in the superclass by *overriding* them, and we do this by marking a method as an `@Override`:
+We can also replace methods in the superclass by *overriding* them, and we do this by marking a method as an `override`:
 
-```java
+```C#
 class Vehicle {
     int topSpeed;
     
@@ -102,14 +101,14 @@ class Vehicle {
         this.topSpeed = topSpeed;
     }
     
-    public String move() {
+    public string move() {
         return "Moving at " + this.topSpeed;
     }
 }
 
-class Plane extends Vehicle {
-    @Override public String move() {
-        return "Taking off... " + super.move();
+class Plane : Vehicle {
+    public override string move() {
+        return "Taking off... " + base.move();
     }
 }
 ```

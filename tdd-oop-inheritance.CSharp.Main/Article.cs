@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 namespace tdd_oop_inheritance.CSharp.Main
 {
     public class Article {
-        public String title;
+        public string title;
 
         bool onLoan = false;
 
-        public Article(String title) {
+        public Article(string title) {
             this.title = title;
         }
-
-        public bool isOnLoan() {
+        
+        public bool isOnLoan()  {
             return onLoan;
         }
 
-        public String checkIn() {
+        public string checkIn() {
             if (!this.isOnLoan()) {
                 return "item is not currently on loan";
             }
@@ -29,7 +29,7 @@ namespace tdd_oop_inheritance.CSharp.Main
             return "item has been checked in";
         }
 
-        public String checkOut() {
+        public string checkOut() {
             if (this.isOnLoan()) {
                 return "item is currently on loan";
             }

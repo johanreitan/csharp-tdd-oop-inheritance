@@ -8,11 +8,11 @@ namespace tdd_oop_inheritance.CSharp.Main
 {
     public class Newspaper
     {
-        public String title;
+        public string title;
 
         Boolean onLoan = false;
 
-        public Newspaper(String title) {
+        public Newspaper(string title) {
             this.title = title;
         }
 
@@ -20,11 +20,11 @@ namespace tdd_oop_inheritance.CSharp.Main
             return onLoan;
         }
 
-        public String checkIn() {
+        public string checkIn() {
             return "newspapers are not available for loan";
         }
 
-        public String checkOut() {
+        public string checkOut() {
             return "newspapers are not available for loan";
         }
     }
